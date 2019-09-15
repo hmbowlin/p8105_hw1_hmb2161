@@ -1,9 +1,13 @@
+---
+output:
+  github_document: default
+  pdf_document: default
+---
 
 --------------------------------------------------------------------------------
 title: "p8105_hw1_hmb2161"
 author: Hannah Bowlin
 output: github_document: default 
-        html_document: default
 --------------------------------------------------------------------------------
 
 # Problem 0.1:

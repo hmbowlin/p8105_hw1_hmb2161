@@ -1,33 +1,192 @@
-p8105\_hw1\_hmb2161
-================
 
-## R Markdown
+|                                   |
+| :-------------------------------- |
+| title: “p8105\_hw1\_hmb2161”      |
+| author: Hannah Bowlin             |
+| output: github\_document: default |
 
-This is an R Markdown document. Markdown is a simple formatting syntax
-for authoring HTML, PDF, and MS Word documents. For more details on
-using R Markdown see <http://rmarkdown.rstudio.com>.
+# Problem 0.1:
 
-When you click the **Knit** button a document will be generated that
-includes both content as well as the output of any embedded R code
-chunks within the document. You can embed an R code chunk like this:
+  - Set up a public GitHub repo and local R project: p8105\_hw1\_hmb2161
+    (github link: <https://github.com/hmbowlin/p8105_hw1_hmb2161>)
+  - Create a single .rmd file named p8105\_hw1\_hmb2161.rmd (in use)
+    that goes to github document (linked and the output github has been
+    changed from html above) -Knit document to ensure work is
+    reproducible
+
+# Problem 0.2:
+
+  - Ensure solutions are correctly edited and styled based on the
+    guidelines in Building Blocks.
+
+# Problem 1:
+
+  - I created a code chunk to answer Problem 1 of the HW1. This problem
+    intends to look at variable types (numeric, character, and factor)
+    and basic coercion.
+
+**Part I: Creating dataframe for different vectors**
 
 ``` r
-summary(cars)
+##I set the working library at tidyverse.
+library(tidyverse)
 ```
 
-    ##      speed           dist       
-    ##  Min.   : 4.0   Min.   :  2.00  
-    ##  1st Qu.:12.0   1st Qu.: 26.00  
-    ##  Median :15.0   Median : 36.00  
-    ##  Mean   :15.4   Mean   : 42.98  
-    ##  3rd Qu.:19.0   3rd Qu.: 56.00  
-    ##  Max.   :25.0   Max.   :120.00
+    ## ── Attaching packages ───────────────────────────────────────── tidyverse 1.2.1 ──
 
-## Including Plots
+    ## ✔ ggplot2 3.2.1     ✔ purrr   0.3.2
+    ## ✔ tibble  2.1.3     ✔ dplyr   0.8.3
+    ## ✔ tidyr   0.8.3     ✔ stringr 1.4.0
+    ## ✔ readr   1.3.1     ✔ forcats 0.4.0
 
-You can also embed plots, for example:
+    ## ── Conflicts ──────────────────────────────────────────── tidyverse_conflicts() ──
+    ## ✖ dplyr::filter() masks stats::filter()
+    ## ✖ dplyr::lag()    masks stats::lag()
 
-![](knit-p8105_hw1_hmb2161_files/figure-gfm/pressure-1.png)<!-- -->
+``` r
+## I set the seed to ensure I get the same numbers each time I run this code.
+set.seed(100)
 
-Note that the `echo = FALSE` parameter was added to the code chunk to
-prevent printing of the R code that generated the plot.
+## I created a data frame with a random sample of size 8 from the standard normal distribution, a logical vector showing if the elements in the sample are greater than zero (it will return "false" if it doesn't satisfy this condition), a character vector that is 8 elements long with three different factors apple, pear, and banana.
+sample_number = rnorm(n = 8)
+vec_logical = sample_number > 0
+vec_character = character(length = 8)
+vec_factor = factor(c("apple", "banana", "pear", "banana", "pear", "apple", "apple", "pear"))
+
+## I will now take the mean of each variable in my data frame. 
+mean(sample_number)
+```
+
+    ## [1] 0.1256937
+
+``` r
+mean(vec_logical)
+```
+
+    ## [1] 0.625
+
+``` r
+mean(vec_character)
+```
+
+    ## Warning in mean.default(vec_character): argument is not numeric or logical:
+    ## returning NA
+
+    ## [1] NA
+
+``` r
+mean(vec_factor)
+```
+
+    ## Warning in mean.default(vec_factor): argument is not numeric or logical:
+    ## returning NA
+
+    ## [1] NA
+
+  - The mean for (sample\_number) is 0.1256937. As sample\_number is a
+    random sample of numbers and I am able to take the mean of these
+    numbers
+  - The mean for (vec\_logical) is 0.625. As vec\_logical is based on
+    sample\_number, it will run when its condition is satisfied.
+    vec\_logical represents the mean of sample\_number when
+    sample\_number’s elements are greater than 0.
+  - The mean for vec\_character is not possible as R views it as
+    non-numeric text.You could store numbers in a character vector, but
+    R would not view them as numbers, but as numbers stored as text.
+  - The mean for vec\_factor is not possible as R views it as
+    non-numeric characters that are grouped into factor levels.
+
+**Part II: Converting variables between character and numeric format**
+
+``` r
+as.numeric(vec_logical)
+as.numeric(vec_character)
+as.numeric(vec_factor)
+```
+
+  - I created a new code chunk to work on the command as.numeric. I
+    changed the logical, character, and factor vectors to numeric. The
+    sample\_number vector was already numeric and doesn’t need to be
+    changed.
+
+  - The command made these character and factor vectors numeric so the
+    logical vector now stores true and false as 0 and 1, the character
+    vector stores the values as 8 numbers, and when I entered in factor
+    levels it saves as 1, 2, 3, not apple, banana, pear.
+
+  - This means that you can change character vectors into numeric form
+    with the command as.numeric. I now know that I couldn’t take the
+    mean of these variables because they weren’t stored as numbers, they
+    were stored as text.
+
+**Part III: Manipulation of vectors and formats**
+
+``` r
+#Changed vec_logical to numeric and multiplied it by random sample
+as.numeric(vec_logical) * sample_number 
+
+#Changed vec_logical to factor and multiplied it by the random sample
+as.factor(vec_logical) * sample_number
+```
+
+    ## Warning in Ops.factor(as.factor(vec_logical), sample_number): '*' not
+    ## meaningful for factors
+
+``` r
+#Changed vec_logical to factor and converted result to numeric and then multipled it by the random sample
+as.numeric(as.factor(vec_logical)) * sample_number
+```
+
+  - When i changed the logical vector to factor, it didn’t work as it is
+    saved as a factor, not as numeric. When I changed the logical vector
+    to a factor and changed that entire result to numeric, then the
+    multiplication worked.
+
+# Problem 2:
+
+**Part I: Create data frame for random samples and different vectors**
+
+``` r
+#Set the seed so that I get the same result every time 
+set.seed(1000)
+
+#Create dataframe 
+x = rnorm(n = 500)
+y = rnorm(n = 500)
+vec_logical = x + y > 1
+as.factor(as.numeric(vec_logical))
+```
+
+    ##   [1] 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 1 0 0 1 0 1 1 0 0 0 1 0 1 0 1 0 0 0
+    ##  [36] 1 0 1 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 0 0 0 1 1 0 0
+    ##  [71] 0 1 1 1 0 0 0 1 0 1 1 1 0 0 0 1 0 0 0 1 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0
+    ## [106] 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0 1 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0
+    ## [141] 1 0 0 1 0 0 1 1 0 1 0 0 0 1 0 0 0 1 0 0 1 0 1 0 0 0 1 1 0 0 0 0 0 0 0
+    ## [176] 0 1 1 0 0 1 0 1 0 0 0 0 0 1 0 0 0 0 1 0 1 1 1 0 0 1 0 0 0 0 0 0 0 1 0
+    ## [211] 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 1 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0 1 0
+    ## [246] 0 0 0 1 0 0 0 0 1 0 0 0 0 0 1 1 0 0 1 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0
+    ## [281] 0 0 0 0 1 1 1 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0
+    ## [316] 0 0 0 0 0 0 0 1 0 0 1 1 0 1 0 0 1 1 0 0 0 1 0 1 0 0 0 1 0 1 0 0 1 0 0
+    ## [351] 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 1 0 1 1 0 0 0 0 0 0
+    ## [386] 1 0 0 0 0 1 0 0 0 1 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+    ## [421] 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0 1 0 0 0 0 1 0 0 1 0 1 0 1 0 0 1 0
+    ## [456] 0 1 0 0 0 0 1 1 0 0 1 0 0 0 0 0 0 1 1 0 0 0 0 1 0 1 0 0 1 1 1 0 1 1 0
+    ## [491] 0 0 0 0 0 0 0 0 0 0
+    ## Levels: 0 1
+
+``` r
+ncol(x)
+```
+
+    ## NULL
+
+``` r
+nrow(x)
+```
+
+    ## NULL
+
+  - The vector above shows the values of x + y when they are greater
+    than 1 (when the logical vector is true). I then coerced this
+    logical vector to be take on numeric values and coerced that result
+    to factor into levels. \*The size of the dataset is nrow =
