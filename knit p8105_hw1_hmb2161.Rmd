@@ -53,5 +53,6 @@ mean(vec_factor)
 ## The mean for vec_factor is not possible as R views it as non-numeric characters that are grouped into factor levels.
 
 
+
 ```
 
