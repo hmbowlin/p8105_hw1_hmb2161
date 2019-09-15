@@ -1,19 +1,10 @@
-##################################################################
-# Sept 20, 2019
-# 
-# Hannah Bowlin
-# 
-# Script for P8105 HW 1
-#################################################################
-
----
+--------------------------------------------------------------------------------
 title: "p8105_hw1_hmb2161"
-output:
-  github_document: default
-  pdf_document: default
----
+author: Hannah Bowlin
+output: github_document
+--------------------------------------------------------------------------------
 
-Problem 0.1:
+# Problem 0.1:
 
 -Set up a public GitHub repo and local R project: p8105_hw1_hmb2161 (github link: https://github.com/hmbowlin/p8105_hw1_hmb2161) 
 -Create a single .rmd file named p8105_hw1_hmb2161.rmd (in use) that goes to github document (linked and the output github has been changed from html above)
@@ -23,11 +14,15 @@ Problem 0.1:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Problem 1:
+# Problem 0.2:
 
-I created a code chunk to answer Problem 1 of the HW1. This problem intends to look at how well I know variable types (numeric, character, and factor) and some coercion.
+Ensure solutions are correctly edited and styled based on the guidelines in Building Blocks.
 
+# Problem 1:
 
+I created a code chunk to answer Problem 1 of the HW1. This problem intends to look at variable types (numeric, character, and factor) and basic coercion.
+
+**Part I: Creating dataframe for different vectors** 
 ```{r}
 ##I set the working library at tidyverse.
 library(tidyverse)
@@ -46,21 +41,33 @@ mean(sample_number)
 mean(vec_logical)
 mean(vec_character)
 mean(vec_factor)
+```
+-The mean for (sample_number) is 0.1256937. As sample_number is a random sample of numbers and I am able to take the mean of these numbers
+-The mean for (vec_logical) is 0.625. As vec_logical is based on sample_number, it will run when its condition is satisfied. vec_logical represents the mean of sample_number when sample_number's elements are greater than 0.
+-The mean for vec_character is not possible as R views it as non-numeric text.You could store numbers in a character vector, but R would not view them as numbers, but as numbers stored as text.
+-The mean for vec_factor is not possible as R views it as non-numeric characters that are grouped into factor levels.
 
-## The mean for (sample_number) is 0.1256937. As sample_number is a random sample of numbers and I am able to take the mean of these numbers
-## The mean for (vec_logical) is 0.625. As vec_logical is based on sample_number, it will run when its condition is satisfied. vec_logical represents the mean of sample_number when sample_number's elements are greater than 0.
-## The mean for vec_character is not possible as R views it as non-numeric text.You could store numbers in a character vector, but R would not view them as numbers, but as numbers stored as text.
-## The mean for vec_factor is not possible as R views it as non-numeric characters that are grouped into factor levels.
-
-## To work on the command as.numeric, I changed the logical, character, and factor vectors to numeric. The sample_number vector was already numeric and doesn't need to be changed. 
+Part II: Converting variables between character and numeric format
+```{r, results = hide}
 as.numeric(vec_logical)
 as.numeric(vec_character)
 as.numeric(vec_factor)
+```
+I created a new code chunk to work on the command as.numeric. I changed the logical, character, and factor vectors to numeric. The sample_number vector was already numeric and doesn't need to be changed. 
 
-## The command made these character and factor vectors numeric so the logical vector now stores true and false as 0 and 1, the character vector stores the values as 8 numbers, and when I entered in factor levels it saves as 1, 2, 3, not apple, banana, pear.
+The command made these character and factor vectors numeric so the logical vector now stores true and false as 0 and 1, the character vector stores the values as 8 numbers, and when I entered in factor levels it saves as 1, 2, 3, not apple, banana, pear.
 
-## This means that you can change character vectors into numeric form with the command as.numeric. I now know that I couldn't take the mean of these variables because they weren't stored as numbers, they were stored as text.
+This means that you can change character vectors into numeric form with the command as.numeric. I now know that I couldn't take the mean of these variables because they weren't stored as numbers, they were stored as text.
 
+Part III: Manipulation of vectors and formats
+```{r, results = hide}
+#Changed vec_logical to numeric and multiplied it by random sample
+as.numeric(vec_logical) * sample_number 
 
+#Changed vec_logical to factor and multiplied it by the random sample
+as.numeric(vec_factor) * sample_number
+
+#Changed vec_logical to factor and converted result to numeric and then multipled it by the random sample
+as.numeric(as.factor(vec_logical)) * sample_number
 ```
 
