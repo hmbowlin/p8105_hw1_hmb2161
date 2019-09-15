@@ -52,6 +52,14 @@ mean(vec_factor)
 ## The mean for vec_character is not possible as R views it as non-numeric text.You could store numbers in a character vector, but R would not view them as numbers, but as numbers stored as text.
 ## The mean for vec_factor is not possible as R views it as non-numeric characters that are grouped into factor levels.
 
+## To work on the command as.numeric, I changed the logical, character, and factor vectors to numeric. The sample_number vector was already numeric and doesn't need to be changed. 
+as.numeric(vec_logical)
+as.numeric(vec_character)
+as.numeric(vec_factor)
+
+## The command made these character and factor vectors numeric so the logical vector now stores true and false as 0 and 1, the character vector stores the values as 8 numbers, and when I entered in factor levels it saves as 1, 2, 3, not apple, banana, pear.
+
+## This means that you can change character vectors into numeric form with the command as.numeric. I now know that I couldn't take the mean of these variables because they weren't stored as numbers, they were stored as text.
 
 
 ```
