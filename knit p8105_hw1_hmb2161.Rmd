@@ -1,26 +1,24 @@
+
 --------------------------------------------------------------------------------
 title: "p8105_hw1_hmb2161"
 author: Hannah Bowlin
-output: github_document
+output: github_document: default 
+        html_document: default
 --------------------------------------------------------------------------------
 
 # Problem 0.1:
 
--Set up a public GitHub repo and local R project: p8105_hw1_hmb2161 (github link: https://github.com/hmbowlin/p8105_hw1_hmb2161) 
--Create a single .rmd file named p8105_hw1_hmb2161.rmd (in use) that goes to github document (linked and the output github has been changed from html above)
--Knit document to ensure work is reproducible:
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+* Set up a public GitHub repo and local R project: p8105_hw1_hmb2161 (github link: https://github.com/hmbowlin/p8105_hw1_hmb2161) 
+* Create a single .rmd file named p8105_hw1_hmb2161.rmd (in use) that goes to github document (linked and the output github has been changed from html above)
+-Knit document to ensure work is reproducible
 
 # Problem 0.2:
 
-Ensure solutions are correctly edited and styled based on the guidelines in Building Blocks.
+* Ensure solutions are correctly edited and styled based on the guidelines in Building Blocks.
 
 # Problem 1:
 
-I created a code chunk to answer Problem 1 of the HW1. This problem intends to look at variable types (numeric, character, and factor) and basic coercion.
+* I created a code chunk to answer Problem 1 of the HW1. This problem intends to look at variable types (numeric, character, and factor) and basic coercion.
 
 **Part I: Creating dataframe for different vectors** 
 ```{r}
@@ -30,11 +28,11 @@ library(tidyverse)
 ## I set the seed to ensure I get the same numbers each time I run this code.
 set.seed(100)
 
-## I created a random sample of size 8 from the standard normal distribution, a logical vector showing if the elements in the sample are greater than zero (it will return "false" if it doesn't satisfy this condition), a character vector that is 8 elements long with three different factors apple, pear, and banana.
+## I created a data frame with a random sample of size 8 from the standard normal distribution, a logical vector showing if the elements in the sample are greater than zero (it will return "false" if it doesn't satisfy this condition), a character vector that is 8 elements long with three different factors apple, pear, and banana.
 sample_number = rnorm(n = 8)
 vec_logical = sample_number > 0
 vec_character = character(length = 8)
-vec_factor= factor(c("apple", "banana", "pear", "banana", "pear", "apple", "apple", "pear"))
+vec_factor = factor(c("apple", "banana", "pear", "banana", "pear", "apple", "apple", "pear"))
 
 ## I will now take the mean of each variable in my data frame. 
 mean(sample_number)
@@ -42,32 +40,53 @@ mean(vec_logical)
 mean(vec_character)
 mean(vec_factor)
 ```
--The mean for (sample_number) is 0.1256937. As sample_number is a random sample of numbers and I am able to take the mean of these numbers
--The mean for (vec_logical) is 0.625. As vec_logical is based on sample_number, it will run when its condition is satisfied. vec_logical represents the mean of sample_number when sample_number's elements are greater than 0.
--The mean for vec_character is not possible as R views it as non-numeric text.You could store numbers in a character vector, but R would not view them as numbers, but as numbers stored as text.
--The mean for vec_factor is not possible as R views it as non-numeric characters that are grouped into factor levels.
+* The mean for (sample_number) is 0.1256937. As sample_number is a random sample of numbers and I am able to take the mean of these numbers
+* The mean for (vec_logical) is 0.625. As vec_logical is based on sample_number, it will run when its condition is satisfied. vec_logical represents the mean of sample_number when sample_number's elements are greater than 0.
+* The mean for vec_character is not possible as R views it as non-numeric text.You could store numbers in a character vector, but R would not view them as numbers, but as numbers stored as text.
+* The mean for vec_factor is not possible as R views it as non-numeric characters that are grouped into factor levels.
 
-Part II: Converting variables between character and numeric format
-```{r, results = hide}
+**Part II: Converting variables between character and numeric format**
+```{r, results = "hide"}
 as.numeric(vec_logical)
 as.numeric(vec_character)
 as.numeric(vec_factor)
 ```
-I created a new code chunk to work on the command as.numeric. I changed the logical, character, and factor vectors to numeric. The sample_number vector was already numeric and doesn't need to be changed. 
+* I created a new code chunk to work on the command as.numeric. I changed the logical, character, and factor vectors to numeric. The sample_number vector was already numeric and doesn't need to be changed. 
 
-The command made these character and factor vectors numeric so the logical vector now stores true and false as 0 and 1, the character vector stores the values as 8 numbers, and when I entered in factor levels it saves as 1, 2, 3, not apple, banana, pear.
+* The command made these character and factor vectors numeric so the logical vector now stores true and false as 0 and 1, the character vector stores the values as 8 numbers, and when I entered in factor levels it saves as 1, 2, 3, not apple, banana, pear.
 
-This means that you can change character vectors into numeric form with the command as.numeric. I now know that I couldn't take the mean of these variables because they weren't stored as numbers, they were stored as text.
+* This means that you can change character vectors into numeric form with the command as.numeric. I now know that I couldn't take the mean of these variables because they weren't stored as numbers, they were stored as text.
 
-Part III: Manipulation of vectors and formats
-```{r, results = hide}
+**Part III: Manipulation of vectors and formats**
+```{r, results = "hide"}
 #Changed vec_logical to numeric and multiplied it by random sample
 as.numeric(vec_logical) * sample_number 
 
 #Changed vec_logical to factor and multiplied it by the random sample
-as.numeric(vec_factor) * sample_number
+as.factor(vec_logical) * sample_number
 
 #Changed vec_logical to factor and converted result to numeric and then multipled it by the random sample
 as.numeric(as.factor(vec_logical)) * sample_number
 ```
+
+* When i changed the logical vector to factor, it didn't work as it is saved as a factor, not as numeric. When I changed the logical vector to a factor and changed that entire result to numeric, then the multiplication worked. 
+
+# Problem 2:
+
+**Part I: Create data frame for random samples and different vectors**
+```{r}
+#Set the seed so that I get the same result every time 
+set.seed(1000)
+
+#Create dataframe 
+x = rnorm(n = 500)
+y = rnorm(n = 500)
+vec_logical = x + y > 1
+as.factor(as.numeric(vec_logical))
+ncol(x)
+nrow(x)
+```
+* The vector above shows the values of x + y when they are greater than 1 (when the logical vector is true). I then coerced this logical vector to be take on numeric values and coerced that result to factor into levels.
+*The size of the dataset is nrow = 
+
 
