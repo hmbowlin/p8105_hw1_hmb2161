@@ -50,7 +50,7 @@ mean(vec_factor)
 * The mean for vec_factor is not possible as R views it as non-numeric characters that are grouped into factor levels.
 
 **Part II: Converting variables between character and numeric format**
-```{r, results = "hide"}
+```{r, eval = "false"}
 as.numeric(vec_logical)
 as.numeric(vec_character)
 as.numeric(vec_factor)
@@ -62,7 +62,7 @@ as.numeric(vec_factor)
 * This means that you can change character vectors into numeric form with the command as.numeric. I now know that I couldn't take the mean of these variables because they weren't stored as numbers, they were stored as text.
 
 **Part III: Manipulation of vectors and formats**
-```{r, results = "hide"}
+```{r}
 #Changed vec_logical to numeric and multiplied it by random sample
 as.numeric(vec_logical) * sample_number 
 
@@ -83,14 +83,30 @@ as.numeric(as.factor(vec_logical)) * sample_number
 set.seed(1000)
 
 #Create dataframe 
-x = rnorm(n = 500)
-y = rnorm(n = 500)
-vec_logical = x + y > 1
-as.factor(as.numeric(vec_logical))
-ncol(x)
-nrow(x)
+probtwo_df = tibble(
+  x = rnorm(n = 500),
+  y = rnorm(n = 500),
+  vec_logical = (x + y) > 1,
+  vec_numeric = as.numeric(vec_logical),
+  vec_factor = as.factor(vec_logical)
+) 
 ```
+
 * The vector above shows the values of x + y when they are greater than 1 (when the logical vector is true). I then coerced this logical vector to be take on numeric values and coerced that result to factor into levels.
-*The size of the dataset is nrow = 
+* The size of the dataset is `nrow(probtwo_df)` rows and `ncol(probtwo_df)` columns
+* The mean of the dataset is `mean(pull(probtwo_df, x)`, the median is `median(pull(probtwo_df, x)`, and the standard deviation is `sd(pull(probtwo_df, x)`
+* The proportion of cases for which x + y >1 is `(length)(which(vec_logical)/((length)(vec_logical))`
+
+`nrow(probtwo_df)`
+`ncol(probtwo_df)`
+`pull(probtwo_df, x)`
+`mean(pull(probtwo_df))`
+
+**Part II: Plotting dataframe**
+```{r}
+
+
+```
+
 
 

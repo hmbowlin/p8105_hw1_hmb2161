@@ -100,9 +100,21 @@ mean(vec_factor)
 
 ``` r
 as.numeric(vec_logical)
+```
+
+    ## [1] 0 1 0 1 1 1 0 1
+
+``` r
 as.numeric(vec_character)
+```
+
+    ## [1] NA NA NA NA NA NA NA NA
+
+``` r
 as.numeric(vec_factor)
 ```
+
+    ## [1] 1 2 3 2 3 1 1 3
 
   - I created a new code chunk to work on the command as.numeric. I
     changed the logical, character, and factor vectors to numeric. The
@@ -124,7 +136,12 @@ as.numeric(vec_factor)
 ``` r
 #Changed vec_logical to numeric and multiplied it by random sample
 as.numeric(vec_logical) * sample_number 
+```
 
+    ## [1] 0.0000000 0.1315312 0.0000000 0.8867848 0.1169713 0.3186301 0.0000000
+    ## [8] 0.7145327
+
+``` r
 #Changed vec_logical to factor and multiplied it by the random sample
 as.factor(vec_logical) * sample_number
 ```
@@ -132,10 +149,15 @@ as.factor(vec_logical) * sample_number
     ## Warning in Ops.factor(as.factor(vec_logical), sample_number): '*' not
     ## meaningful for factors
 
+    ## [1] NA NA NA NA NA NA NA NA
+
 ``` r
 #Changed vec_logical to factor and converted result to numeric and then multipled it by the random sample
 as.numeric(as.factor(vec_logical)) * sample_number
 ```
+
+    ## [1] -0.50219235  0.26306233 -0.07891709  1.77356962  0.23394254  0.63726018
+    ## [7] -0.58179068  1.42906542
 
   - When i changed the logical vector to factor, it didn’t work as it is
     saved as a factor, not as numeric. When I changed the logical vector
@@ -151,42 +173,28 @@ as.numeric(as.factor(vec_logical)) * sample_number
 set.seed(1000)
 
 #Create dataframe 
-x = rnorm(n = 500)
-y = rnorm(n = 500)
-vec_logical = x + y > 1
-as.factor(as.numeric(vec_logical))
+probtwo_df = tibble(
+  x = rnorm(n = 500),
+  y = rnorm(n = 500),
+  vec_logical = (x + y) > 1,
+  vec_numeric = as.numeric(vec_logical),
+  vec_factor = as.factor(vec_logical)
+) 
 ```
-
-    ##   [1] 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 1 0 0 1 0 1 1 0 0 0 1 0 1 0 1 0 0 0
-    ##  [36] 1 0 1 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 0 0 0 1 1 0 0
-    ##  [71] 0 1 1 1 0 0 0 1 0 1 1 1 0 0 0 1 0 0 0 1 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0
-    ## [106] 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0 1 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0
-    ## [141] 1 0 0 1 0 0 1 1 0 1 0 0 0 1 0 0 0 1 0 0 1 0 1 0 0 0 1 1 0 0 0 0 0 0 0
-    ## [176] 0 1 1 0 0 1 0 1 0 0 0 0 0 1 0 0 0 0 1 0 1 1 1 0 0 1 0 0 0 0 0 0 0 1 0
-    ## [211] 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 1 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0 1 0
-    ## [246] 0 0 0 1 0 0 0 0 1 0 0 0 0 0 1 1 0 0 1 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0
-    ## [281] 0 0 0 0 1 1 1 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0
-    ## [316] 0 0 0 0 0 0 0 1 0 0 1 1 0 1 0 0 1 1 0 0 0 1 0 1 0 0 0 1 0 1 0 0 1 0 0
-    ## [351] 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 1 0 1 1 0 0 0 0 0 0
-    ## [386] 1 0 0 0 0 1 0 0 0 1 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-    ## [421] 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0 1 0 0 0 0 1 0 0 1 0 1 0 1 0 0 1 0
-    ## [456] 0 1 0 0 0 0 1 1 0 0 1 0 0 0 0 0 0 1 1 0 0 0 0 1 0 1 0 0 1 1 1 0 1 1 0
-    ## [491] 0 0 0 0 0 0 0 0 0 0
-    ## Levels: 0 1
-
-``` r
-ncol(x)
-```
-
-    ## NULL
-
-``` r
-nrow(x)
-```
-
-    ## NULL
 
   - The vector above shows the values of x + y when they are greater
     than 1 (when the logical vector is true). I then coerced this
     logical vector to be take on numeric values and coerced that result
-    to factor into levels. \*The size of the dataset is nrow =
+    to factor into levels.
+  - The size of the dataset is `nrow(probtwo_df)` rows and
+    `ncol(probtwo_df)` columns
+  - The mean of the dataset is `mean(pull(probtwo_df, x)`, the median is
+    `median(pull(probtwo_df, x)`, and the standard deviation is
+    `sd(pull(probtwo_df, x)`
+  - The proportion of cases for which x + y \>1 is
+    `(length)(which(vec_logical)/((length)(vec_logical))`
+
+`nrow(probtwo_df)` `ncol(probtwo_df)` `pull(probtwo_df, x)`
+`mean(pull(probtwo_df))`
+
+**Part II: Plotting dataframe**
