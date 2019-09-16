@@ -93,18 +93,13 @@ probtwo_df = tibble(
 ```
 
 * The vector above shows the values of x + y when they are greater than 1 (when the logical vector is true). I then coerced this logical vector to be take on numeric values and coerced that result to factor into levels.
-* The size of the dataset is `nrow(probtwo_df)` rows and `ncol(probtwo_df)` columns
-* The mean of the dataset is `mean(pull(probtwo_df, x)`, the median is `median(pull(probtwo_df, x)`, and the standard deviation is `sd(pull(probtwo_df, x)`
-* The proportion of cases for which x + y >1 is `(length)(which(vec_logical)/((length)(vec_logical))`
-
-`nrow(probtwo_df)`
-`ncol(probtwo_df)`
-`pull(probtwo_df, x)`
-`mean(pull(probtwo_df))`
+* The size of the dataset is `r nrow(probtwo_df)` rows and `r ncol(probtwo_df)` columns
+* The mean of the dataset is `r mean(pull(probtwo_df, x))`, the median is `r median(pull(probtwo_df, x))`, and the standard deviation is `r sd(pull(probtwo_df, x))`
+* The proportion of cases for which x + y >1 is `r (length(which(vec_logical)))/((length)(vec_logical))`
 
 **Part II: Plotting dataframe**
 ```{r}
-
+ggplot(probtwo_df, aes(x = x, y = y))
 
 ```
 

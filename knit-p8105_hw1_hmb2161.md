@@ -186,15 +186,16 @@ probtwo_df = tibble(
     than 1 (when the logical vector is true). I then coerced this
     logical vector to be take on numeric values and coerced that result
     to factor into levels.
-  - The size of the dataset is `nrow(probtwo_df)` rows and
-    `ncol(probtwo_df)` columns
-  - The mean of the dataset is `mean(pull(probtwo_df, x)`, the median is
-    `median(pull(probtwo_df, x)`, and the standard deviation is
-    `sd(pull(probtwo_df, x)`
-  - The proportion of cases for which x + y \>1 is
-    `(length)(which(vec_logical)/((length)(vec_logical))`
+  - The size of the dataset is 500 rows and 5 columns
+  - The mean of the dataset is 0.0085449, the median is 0.0065174, and
+    the standard deviation is 0.9390666
+  - The proportion of cases for which x + y \>1 is 0.625
 
-`nrow(probtwo_df)` `ncol(probtwo_df)` `pull(probtwo_df, x)`
-`mean(pull(probtwo_df))`
+**Part II: Plotting
+dataframe**
 
-**Part II: Plotting dataframe**
+``` r
+ggplot(probtwo_df, aes(x = x, y = y))
+```
+
+![](knit-p8105_hw1_hmb2161_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
