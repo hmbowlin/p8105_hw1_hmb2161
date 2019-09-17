@@ -32,14 +32,14 @@
 library(tidyverse)
 ```
 
-    ## ── Attaching packages ───────────────────────────────────────── tidyverse 1.2.1 ──
+    ## ── Attaching packages ────────────────────────────────────────────────── tidyverse 1.2.1 ──
 
     ## ✔ ggplot2 3.2.1     ✔ purrr   0.3.2
     ## ✔ tibble  2.1.3     ✔ dplyr   0.8.3
     ## ✔ tidyr   0.8.3     ✔ stringr 1.4.0
     ## ✔ readr   1.3.1     ✔ forcats 0.4.0
 
-    ## ── Conflicts ──────────────────────────────────────────── tidyverse_conflicts() ──
+    ## ── Conflicts ───────────────────────────────────────────────────── tidyverse_conflicts() ──
     ## ✖ dplyr::filter() masks stats::filter()
     ## ✖ dplyr::lag()    masks stats::lag()
 
@@ -159,7 +159,7 @@ as.numeric(as.factor(vec_logical)) * sample_number
     ## [1] -0.50219235  0.26306233 -0.07891709  1.77356962  0.23394254  0.63726018
     ## [7] -0.58179068  1.42906542
 
-  - When i changed the logical vector to factor, it didn’t work as it is
+  - When I changed the logical vector to factor, it didn’t work as it is
     saved as a factor, not as numeric. When I changed the logical vector
     to a factor and changed that entire result to numeric, then the
     multiplication worked.
@@ -191,11 +191,25 @@ probtwo_df = tibble(
     the standard deviation is 0.9390666
   - The proportion of cases for which x + y \>1 is 0.625
 
-**Part II: Plotting
-dataframe**
+**Part II: Plotting dataframe**
 
 ``` r
-ggplot(probtwo_df, aes(x = x, y = y))
+ggplot(probtwo_df, aes(x = x, y = y, color = vec_logical)) +
+  geom_point()
 ```
 
 ![](knit-p8105_hw1_hmb2161_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+
+``` r
+ggplot(probtwo_df, aes(x = x, y = y, color = vec_numeric)) +
+  geom_point()
+```
+
+![](knit-p8105_hw1_hmb2161_files/figure-gfm/unnamed-chunk-5-2.png)<!-- -->
+
+``` r
+ggplot(probtwo_df, aes(x = x, y = y, color = vec_factor)) +
+  geom_point()
+```
+
+![](knit-p8105_hw1_hmb2161_files/figure-gfm/unnamed-chunk-5-3.png)<!-- -->

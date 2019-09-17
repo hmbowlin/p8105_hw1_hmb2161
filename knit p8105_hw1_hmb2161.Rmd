@@ -73,7 +73,7 @@ as.factor(vec_logical) * sample_number
 as.numeric(as.factor(vec_logical)) * sample_number
 ```
 
-* When i changed the logical vector to factor, it didn't work as it is saved as a factor, not as numeric. When I changed the logical vector to a factor and changed that entire result to numeric, then the multiplication worked. 
+* When I changed the logical vector to factor, it didn't work as it is saved as a factor, not as numeric. When I changed the logical vector to a factor and changed that entire result to numeric, then the multiplication worked. 
 
 # Problem 2:
 
@@ -99,7 +99,14 @@ probtwo_df = tibble(
 
 **Part II: Plotting dataframe**
 ```{r}
-ggplot(probtwo_df, aes(x = x, y = y))
+ggplot(probtwo_df, aes(x = x, y = y, color = vec_logical)) +
+  geom_point()
+  
+ggplot(probtwo_df, aes(x = x, y = y, color = vec_numeric)) +
+  geom_point()
+
+ggplot(probtwo_df, aes(x = x, y = y, color = vec_factor)) +
+  geom_point()
 
 ```
 
