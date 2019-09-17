@@ -52,7 +52,11 @@ sample_number = rnorm(n = 8)
 vec_logical = sample_number > 0
 vec_character = character(length = 8)
 vec_factor = factor(c("apple", "banana", "pear", "banana", "pear", "apple", "apple", "pear"))
+```
 
+**Part II: Taking the mean**
+
+``` r
 ## I will now take the mean of each variable in my data frame. 
 mean(sample_number)
 ```
@@ -96,42 +100,28 @@ mean(vec_factor)
   - The mean for vec\_factor is not possible as R views it as
     non-numeric characters that are grouped into factor levels.
 
-**Part II: Converting variables between character and numeric format**
+**Part III: Converting variables between character and numeric format**
 
 ``` r
 as.numeric(vec_logical)
-```
-
-    ## [1] 0 1 0 1 1 1 0 1
-
-``` r
 as.numeric(vec_character)
-```
-
-    ## [1] NA NA NA NA NA NA NA NA
-
-``` r
 as.numeric(vec_factor)
 ```
-
-    ## [1] 1 2 3 2 3 1 1 3
 
   - I created a new code chunk to work on the command as.numeric. I
     changed the logical, character, and factor vectors to numeric. The
     sample\_number vector was already numeric and doesn’t need to be
     changed.
-
   - The command made these character and factor vectors numeric so the
     logical vector now stores true and false as 0 and 1, the character
     vector stores the values as 8 numbers, and when I entered in factor
     levels it saves as 1, 2, 3, not apple, banana, pear.
-
   - This means that you can change character vectors into numeric form
     with the command as.numeric. I now know that I couldn’t take the
     mean of these variables because they weren’t stored as numbers, they
     were stored as text.
 
-**Part III: Manipulation of vectors and formats**
+**Part IV: Manipulation of vectors and formats**
 
 ``` r
 #Changed vec_logical to numeric and multiplied it by random sample
@@ -191,32 +181,45 @@ probtwo_df = tibble(
     the standard deviation is 0.9390666
   - The proportion of cases for which x + y \>1 is 0.625
 
-**Part II: Plotting
-dataframe**
+**Part II: Plotting dataframe**
 
 ``` r
-## Created a ggplot for my dataframe with the datapoints colored by whether the logical vector is true or not. The datapoints are salmon when the vector is true and teal when the vector is false.
+## Created a ggplot for my dataframe with vec_logical coloring
 ggplot(probtwo_df, aes(x = x, y = y, color = vec_logical)) +
   geom_point()
 ```
 
-![](knit-p8105_hw1_hmb2161_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+![](knit-p8105_hw1_hmb2161_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
 ``` r
 ## Saved ggplot to my project directory
 ggsave("vec_logical_ggplot.pdf", height = 4, width = 6)
-  
-## Created a ggplot for my dataframe with the datapoints colored by whether the numeric vector is true. The datapoints are black when the numeric vector is 0 (when the logical vector is false) and blue when the numeric vector is 1 (when the logical vector is true). The colors correspond with the ggplot for vec_logical.
+```
+
+  - The datapoints are salmon when the vector is true and teal when the
+    vector is false.
+
+<!-- end list -->
+
+``` r
+## Created a ggplot for dataframe with vec_numeric coloring
 ggplot(probtwo_df, aes(x = x, y = y, color = vec_numeric)) +
   geom_point()
 ```
 
-![](knit-p8105_hw1_hmb2161_files/figure-gfm/unnamed-chunk-5-2.png)<!-- -->
+![](knit-p8105_hw1_hmb2161_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+\* The datapoints are black when the numeric vector is 0 (when the
+logical vector is false) and blue when the numeric vector is 1 (when the
+logical vector is true). The colors correspond with the ggplot for
+vec\_logical.
 
 ``` r
-## Created a ggplot for my dataframe with the datapoints colored by the factor vector. The salmon color represents factor level false and the teal color represents the factor level true. This ggplot corresponds with both above ggplots as it is showing the levels of the logical vector.
+## Created a ggplot for dataframe with vec_factor coloring
 ggplot(probtwo_df, aes(x = x, y = y, color = vec_factor)) +
   geom_point()
 ```
 
-![](knit-p8105_hw1_hmb2161_files/figure-gfm/unnamed-chunk-5-3.png)<!-- -->
+![](knit-p8105_hw1_hmb2161_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+\* The salmon color represents factor level false and the teal color
+represents the factor level true. This ggplot corresponds with both
+above ggplots as it is showing the levels of the logical vector.

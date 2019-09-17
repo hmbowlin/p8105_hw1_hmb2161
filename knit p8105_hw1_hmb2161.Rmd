@@ -37,7 +37,10 @@ sample_number = rnorm(n = 8)
 vec_logical = sample_number > 0
 vec_character = character(length = 8)
 vec_factor = factor(c("apple", "banana", "pear", "banana", "pear", "apple", "apple", "pear"))
+```
 
+**Part II: Taking the mean**
+```{r}
 ## I will now take the mean of each variable in my data frame. 
 mean(sample_number)
 mean(vec_logical)
@@ -49,20 +52,18 @@ mean(vec_factor)
 * The mean for vec_character is not possible as R views it as non-numeric text.You could store numbers in a character vector, but R would not view them as numbers, but as numbers stored as text.
 * The mean for vec_factor is not possible as R views it as non-numeric characters that are grouped into factor levels.
 
-**Part II: Converting variables between character and numeric format**
-```{r, eval = "false"}
+**Part III: Converting variables between character and numeric format**
+```{r, eval = FALSE}
 as.numeric(vec_logical)
 as.numeric(vec_character)
 as.numeric(vec_factor)
 ```
 * I created a new code chunk to work on the command as.numeric. I changed the logical, character, and factor vectors to numeric. The sample_number vector was already numeric and doesn't need to be changed. 
-
 * The command made these character and factor vectors numeric so the logical vector now stores true and false as 0 and 1, the character vector stores the values as 8 numbers, and when I entered in factor levels it saves as 1, 2, 3, not apple, banana, pear.
-
 * This means that you can change character vectors into numeric form with the command as.numeric. I now know that I couldn't take the mean of these variables because they weren't stored as numbers, they were stored as text.
 
-**Part III: Manipulation of vectors and formats**
-```{r}
+**Part IV: Manipulation of vectors and formats**
+```{r} 
 #Changed vec_logical to numeric and multiplied it by random sample
 as.numeric(vec_logical) * sample_number 
 
@@ -99,21 +100,24 @@ probtwo_df = tibble(
 
 **Part II: Plotting dataframe**
 ```{r}
-## Created a ggplot for my dataframe with the datapoints colored by whether the logical vector is true or not. The datapoints are salmon when the vector is true and teal when the vector is false.
+## Created a ggplot for my dataframe with vec_logical coloring
 ggplot(probtwo_df, aes(x = x, y = y, color = vec_logical)) +
   geom_point()
 ## Saved ggplot to my project directory
 ggsave("vec_logical_ggplot.pdf", height = 4, width = 6)
-  
-## Created a ggplot for my dataframe with the datapoints colored by whether the numeric vector is true. The datapoints are black when the numeric vector is 0 (when the logical vector is false) and blue when the numeric vector is 1 (when the logical vector is true). The colors correspond with the ggplot for vec_logical.
+```
+* The datapoints are salmon when the vector is true and teal when the vector is false.
+
+```{r}
+## Created a ggplot for dataframe with vec_numeric coloring
 ggplot(probtwo_df, aes(x = x, y = y, color = vec_numeric)) +
   geom_point()
+```
+* The datapoints are black when the numeric vector is 0 (when the logical vector is false) and blue when the numeric vector is 1 (when the logical vector is true). The colors correspond with the ggplot for vec_logical.
 
-## Created a ggplot for my dataframe with the datapoints colored by the factor vector. The salmon color represents factor level false and the teal color represents the factor level true. This ggplot corresponds with both above ggplots as it is showing the levels of the logical vector.
+```{r}
+## Created a ggplot for dataframe with vec_factor coloring
 ggplot(probtwo_df, aes(x = x, y = y, color = vec_factor)) +
   geom_point()
-
 ```
-
-
-
+* The salmon color represents factor level false and the teal color represents the factor level true. This ggplot corresponds with both above ggplots as it is showing the levels of the logical vector.
