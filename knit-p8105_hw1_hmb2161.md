@@ -201,6 +201,8 @@ ggplot(probtwo_df, aes(x = x, y = y, color = vec_logical)) +
 ![](knit-p8105_hw1_hmb2161_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
 ``` r
+ggsave("vec_logical_ggplot.pdf", height = 4, width = 6)
+  
 ggplot(probtwo_df, aes(x = x, y = y, color = vec_numeric)) +
   geom_point()
 ```

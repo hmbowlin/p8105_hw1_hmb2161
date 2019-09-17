@@ -101,6 +101,7 @@ probtwo_df = tibble(
 ```{r}
 ggplot(probtwo_df, aes(x = x, y = y, color = vec_logical)) +
   geom_point()
+ggsave("vec_logical_ggplot.pdf", height = 4, width = 6)
   
 ggplot(probtwo_df, aes(x = x, y = y, color = vec_numeric)) +
   geom_point()
