@@ -187,7 +187,10 @@ probtwo_df = tibble(
 ## Created a ggplot for my dataframe with vec_logical coloring
 plot_logical = ggplot(probtwo_df, aes(x = x, y = y, color = vec_logical)) +
   geom_point()
+plot_logical
 ```
+
+![](knit-p8105_hw1_hmb2161_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
   - The datapoints are salmon when the vector is true and teal when the
     vector is false.
