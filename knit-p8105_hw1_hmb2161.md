@@ -11,8 +11,8 @@
     (github link: <https://github.com/hmbowlin/p8105_hw1_hmb2161>)
   - Create a single .rmd file named p8105\_hw1\_hmb2161.rmd (in use)
     that goes to github document (linked and the output github has been
-    changed from html above) -Knit document to ensure work is
-    reproducible
+    changed from html above)
+  - Knit document to ensure work is reproducible
 
 # Problem 0.2:
 
