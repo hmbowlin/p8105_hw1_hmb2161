@@ -185,16 +185,12 @@ probtwo_df = tibble(
 
 ``` r
 ## Created a ggplot for my dataframe with vec_logical coloring
-ggplot(probtwo_df, aes(x = x, y = y, color = vec_logical)) +
+plot_logical = ggplot(probtwo_df, aes(x = x, y = y, color = vec_logical)) +
   geom_point()
+print(plot_logical)
 ```
 
 ![](knit-p8105_hw1_hmb2161_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
-
-``` r
-## Saved ggplot to my project directory
-ggsave("vec_logical_ggplot.pdf", height = 4, width = 6)
-```
 
   - The datapoints are salmon when the vector is true and teal when the
     vector is false.
@@ -203,8 +199,9 @@ ggsave("vec_logical_ggplot.pdf", height = 4, width = 6)
 
 ``` r
 ## Created a ggplot for dataframe with vec_numeric coloring
-ggplot(probtwo_df, aes(x = x, y = y, color = vec_numeric)) +
+plot_numeric = ggplot(probtwo_df, aes(x = x, y = y, color = vec_numeric)) +
   geom_point()
+print(plot_numeric)
 ```
 
 ![](knit-p8105_hw1_hmb2161_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
@@ -218,8 +215,9 @@ ggplot(probtwo_df, aes(x = x, y = y, color = vec_numeric)) +
 
 ``` r
 ## Created a ggplot for dataframe with vec_factor coloring
-ggplot(probtwo_df, aes(x = x, y = y, color = vec_factor)) +
+plot_factor = ggplot(probtwo_df, aes(x = x, y = y, color = vec_factor)) +
   geom_point()
+print(plot_factor)
 ```
 
 ![](knit-p8105_hw1_hmb2161_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
@@ -227,3 +225,10 @@ ggplot(probtwo_df, aes(x = x, y = y, color = vec_factor)) +
   - The salmon color represents factor level false and the teal color
     represents the factor level true. This ggplot corresponds with both
     above ggplots as it is showing the levels of the logical vector.
+
+**Part III: Saving Plot to Directory**
+
+``` r
+## Saved ggplot to my project directory
+ggsave("plot_logical.png", height = 6, width = 8)
+```
