@@ -131,4 +131,3 @@ print(plot_factor)
 ## Saved ggplot to my project directory
 ggsave("plot_logical.png", height = 6, width = 8)
 ```
-
