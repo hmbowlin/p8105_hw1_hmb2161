@@ -14,7 +14,10 @@ output: github_document: default
 
 * Set up a public GitHub repo and local R project: p8105_hw1_hmb2161 (github link: https://github.com/hmbowlin/p8105_hw1_hmb2161) 
 * Create a single .rmd file named p8105_hw1_hmb2161.rmd (in use) that goes to github document (linked and the output github has been changed from html above)
--Knit document to ensure work is reproducible
+* Knit document to ensure work is reproducible
+```{r setup, include = FALSE, cache = FALSE}
+knitr::opts_chunk$set(error = TRUE)
+```
 
 # Problem 0.2:
 
@@ -99,29 +102,29 @@ probtwo_df = tibble(
 * The proportion of cases for which x + y >1 is `r (length(which(vec_logical)))/((length)(vec_logical))`
 
 **Part II: Plotting dataframe**
-```{r}
+```{r, echo=TRUE}
 ## Created a ggplot for my dataframe with vec_logical coloring
 plot_logical = ggplot(probtwo_df, aes(x = x, y = y, color = vec_logical)) +
   geom_point()
-print(plot_logical)
+plot_logical
 ```
 
 * The datapoints are salmon when the vector is true and teal when the vector is false.
 
-```{r}
+```{r, echo=TRUE}
 ## Created a ggplot for dataframe with vec_numeric coloring
 plot_numeric = ggplot(probtwo_df, aes(x = x, y = y, color = vec_numeric)) +
   geom_point()
-print(plot_numeric)
+plot_numeric
 ```
 
 * The datapoints are black when the numeric vector is 0 (when the logical vector is false) and blue when the numeric vector is 1 (when the logical vector is true). The colors correspond with the ggplot for vec_logical.
 
-```{r}
+```{r, echo=TRUE}
 ## Created a ggplot for dataframe with vec_factor coloring
 plot_factor = ggplot(probtwo_df, aes(x = x, y = y, color = vec_factor)) +
   geom_point()
-print(plot_factor)
+plot_factor
 ```
 
 * The salmon color represents factor level false and the teal color represents the factor level true. This ggplot corresponds with both above ggplots as it is showing the levels of the logical vector.
