@@ -187,7 +187,7 @@ probtwo_df = tibble(
 ## Created a ggplot for my dataframe with vec_logical coloring
 plot_logical = ggplot(probtwo_df, aes(x = x, y = y, color = vec_logical)) +
   geom_point()
-plot_logical
+print(plot_logical)
 ```
 
 ![](knit-p8105_hw1_hmb2161_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
@@ -201,7 +201,7 @@ plot_logical
 ## Created a ggplot for dataframe with vec_numeric coloring
 plot_numeric = ggplot(probtwo_df, aes(x = x, y = y, color = vec_numeric)) +
   geom_point()
-plot_numeric
+print(plot_numeric)
 ```
 
 ![](knit-p8105_hw1_hmb2161_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
@@ -217,7 +217,7 @@ plot_numeric
 ## Created a ggplot for dataframe with vec_factor coloring
 plot_factor = ggplot(probtwo_df, aes(x = x, y = y, color = vec_factor)) +
   geom_point()
-plot_factor
+print(plot_factor)
 ```
 
 ![](knit-p8105_hw1_hmb2161_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
