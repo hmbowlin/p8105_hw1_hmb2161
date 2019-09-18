@@ -106,6 +106,7 @@ ggplot(probtwo_df, aes(x = x, y = y, color = vec_logical)) +
 ## Saved ggplot to my project directory
 ggsave("vec_logical_ggplot.pdf", height = 4, width = 6)
 ```
+
 * The datapoints are salmon when the vector is true and teal when the vector is false.
 
 ```{r}
@@ -113,6 +114,7 @@ ggsave("vec_logical_ggplot.pdf", height = 4, width = 6)
 ggplot(probtwo_df, aes(x = x, y = y, color = vec_numeric)) +
   geom_point()
 ```
+
 * The datapoints are black when the numeric vector is 0 (when the logical vector is false) and blue when the numeric vector is 1 (when the logical vector is true). The colors correspond with the ggplot for vec_logical.
 
 ```{r}
@@ -120,4 +122,5 @@ ggplot(probtwo_df, aes(x = x, y = y, color = vec_numeric)) +
 ggplot(probtwo_df, aes(x = x, y = y, color = vec_factor)) +
   geom_point()
 ```
+
 * The salmon color represents factor level false and the teal color represents the factor level true. This ggplot corresponds with both above ggplots as it is showing the levels of the logical vector.

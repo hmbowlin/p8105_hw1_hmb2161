@@ -208,10 +208,13 @@ ggplot(probtwo_df, aes(x = x, y = y, color = vec_numeric)) +
 ```
 
 ![](knit-p8105_hw1_hmb2161_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
-\* The datapoints are black when the numeric vector is 0 (when the
-logical vector is false) and blue when the numeric vector is 1 (when the
-logical vector is true). The colors correspond with the ggplot for
-vec\_logical.
+
+  - The datapoints are black when the numeric vector is 0 (when the
+    logical vector is false) and blue when the numeric vector is 1 (when
+    the logical vector is true). The colors correspond with the ggplot
+    for vec\_logical.
+
+<!-- end list -->
 
 ``` r
 ## Created a ggplot for dataframe with vec_factor coloring
@@ -220,6 +223,7 @@ ggplot(probtwo_df, aes(x = x, y = y, color = vec_factor)) +
 ```
 
 ![](knit-p8105_hw1_hmb2161_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
-\* The salmon color represents factor level false and the teal color
-represents the factor level true. This ggplot corresponds with both
-above ggplots as it is showing the levels of the logical vector.
+
+  - The salmon color represents factor level false and the teal color
+    represents the factor level true. This ggplot corresponds with both
+    above ggplots as it is showing the levels of the logical vector.
